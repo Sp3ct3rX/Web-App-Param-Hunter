@@ -67,6 +67,26 @@ Made with ❤️ by @Milad
 
 MIT License
 
+ Bash Dependencies
+
+This script uses the following common UNIX utilities:
+
+    curl – For sending HTTP requests
+
+    grep – For filtering lines
+
+    awk – For pattern scanning
+
+    sed – For string manipulation
+
+    jq – For parsing JSON (optional, but recommended)
+
+✅ Make sure these tools are installed before running the script.
+
+Install example (on Debian/Ubuntu):
+
+sudo apt update && sudo apt install curl grep awk sed jq -y
+
 ---
 
 ## 📦 نصب
