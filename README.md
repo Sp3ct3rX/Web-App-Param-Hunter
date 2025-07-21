@@ -62,7 +62,7 @@ sudo apt install curl grep sed awk
 🧑‍💻 توسعه‌دهنده
 
 Made with ❤️ by @Milad
-<p align="center"> <a href="https://github.com/YourUser"><img src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://t.me/yourchannel"><img src="https://img.shields.io/badge/Telegram-%230077B5.svg?&style=for-the-badge&logo=telegram&logoColor=white"/></a> <a href="https://instagram.com/yourpage"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white"/></a> </p>
+<p align="center"> <a href="https://github.com/Sp3ct3rX"><img src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://t.me/Sp3ct3r_Xx"><img src="https://img.shields.io/badge/Telegram-%230077B5.svg?&style=for-the-badge&logo=telegram&logoColor=white"/></a> <a href="https://instagram.com/sp3ct3rx"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white"/></a> </p>
 🛠️ لایسنس
 
 MIT License
