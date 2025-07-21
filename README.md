@@ -67,7 +67,7 @@ Made with ❤️ by @Milad
 
 MIT License
 
- Bash Dependencies
+📦 Bash Dependencies
 
 This script uses the following common UNIX utilities:
 
