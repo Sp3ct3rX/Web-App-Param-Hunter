@@ -1,97 +1,173 @@
-<h1 align="center">
-  🕵️‍♂️ Param Hunter
-</h1>
+
+📌 param-hunter | شکارچی پارامتر
+
+🔍 ابزاری سبک و سریع برای شکار پارامترهای پنهان در URLها و صفحات وب – مناسب برای تست نفوذ و Bug Bounty.
+🚀 امکانات (Features)
+
+✅ استخراج پارامترهای GET و POST از صفحات HTML
+✅ پشتیبانی از ورودی لیست URL یا دامین
+✅ ذخیره‌سازی خروجی به‌صورت فایل
+✅ حذف موارد تکراری و مرتب‌سازی نتایج
+✅ حالت CLI با ظاهر مرتب و سریع
+
+🧪 روش استفاده (Usage)
+
+$ bash param-hunter.sh -u https://example.com
+$ bash param-hunter.sh -l urls.txt -o output.txt
+
+آرگومان	توضیح
+-u	بررسی یک URL
+-l	بررسی لیست URLها
+-o	ذخیره نتایج در فایل خروجی
+-h	نمایش راهنمای ابزار
+📂 ساختار پروژه (Project Structure)
+
+param-hunter/
+│
+├── param-hunter.sh        → اسکریپت اصلی
+├── README.md              → مستندات دو زبانه
+├── examples/              → نمونه URL برای تست
+├── output/                → ذخیره خروجی‌ها
+└── utils/                 → ابزارهای کمکی (در آینده)
+
+⚠️ پیش‌نیازها (Requirements)
+
+bash >= 4.x
+curl
+grep
+sed
+awk
+
+🧠 هدف (Purpose)
+
+ابزار param-hunter برای هکرهای قانون‌مدار و فعالین Bug Bounty ساخته شده تا در زمان کوتاهی پارامترهای مشکوک یا پنهان را شکار کنند و مرحله شناسایی (Recon) را با دقت و سرعت بالاتری انجام دهند.
+🇬🇧 English Version
+📌 param-hunter
+
+🔍 A lightweight CLI tool to hunt for hidden parameters in URLs and web pages — made for penetration testers and bug bounty hunters.
+🚀 Features
+
+✅ Extract GET & POST parameters from HTML
+✅ Supports single or list of URLs
+✅ Saves output to file
+✅ Removes duplicates & sorts results
+✅ Minimal & fast CLI-based tool
+
+🧪 Usage
+
+$ bash param-hunter.sh -u https://example.com
+$ bash param-hunter.sh -l urls.txt -o output.txt
+
+Argument	Description
+-u	Scan a single URL
+-l	Scan a list of URLs
+-o	Save results to output file
+-h	Display help message
+📂 Project Structure
+
+param-hunter/
+│
+├── param-hunter.sh        → Main script
+├── README.md              → This document
+├── examples/              → Sample URLs for testing
+├── output/                → Result outputs
+└── utils/                 → Helper tools (coming soon)
+
+⚠️ Requirements
+
+bash >= 4.x
+curl
+grep
+sed
+awk
+
+🧠 Goal
+
+param-hunter is built to speed up recon and uncover hidden or suspicious parameters from web pages or endpoints — useful in early stages of bug bounty or pentesting projects.
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&center=true&width=435&lines=🔎+param-hunter+CLI+Tool;for+URL+Parameter+Discovery+and+Fuzzing" alt="Typing SVG" />
+</p>
+
+<h1 align="center">param-hunter 🔍</h1>
 
 <p align="center">
-  ابزار شناسایی پارامترهای URL برای جمع‌آوری داده‌ها، تست امنیت و اجرای حملات XSS/SSRF/LFI و سایر آسیب‌پذیری‌ها.  
+  A lightweight, fast, and smart CLI tool to discover and analyze parameters from URLs.  
+  <br>
+  <strong>Written in Bash — Minimal, Powerful, Hacker-Friendly.</strong>
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&duration=3000&pause=1000&center=true&vCenter=true&width=435&lines=Recon+Tool+for+Bug+Bounty+Hunters;Find+Hidden+Parameters+Like+a+Pro!;Bash+Powered+CLI+Tool+%F0%9F%90%9B" alt="Typing SVG" />
+  <img src="https://github.com/yourusername/param-hunter/assets/demo.gif" width="600"/>
 </p>
 
 ---
 
-## ⚙️ ویژگی‌ها
+## ⚡ Features
 
-- 🎯 جستجوی سریع پارامترها از دامنه یا لیست URL
-- 🧠 استفاده از wordlist داخلی یا دلخواه شما
-- 🔍 پشتیبانی از HTTP/HTTPS و wildcard domains
-- 📤 ذخیره خروجی در فایل
-- 🛡️ مناسب برای تست آسیب‌پذیری‌های:
-  - XSS  
-  - SSRF  
-  - LFI  
-  - Open Redirect  
-  - … و سایر حملات مبتنی بر URL parameters
-
-
-
-🚀 استفاده
-
-./param-hunter.sh -u https://target.com -w wordlist.txt -o results.txt
-
-پارامترها:
-گزینه	توضیح
--u	آدرس دامنه هدف
--w	فایل wordlist پارامترها
--o	مسیر ذخیره‌سازی خروجی
---help	نمایش راهنمای کامل
-
-
-📌 وابستگی‌ها
-
-    curl
-
-    grep
-
-    sed
-
-    awk
-
-📁 اگر نیاز دارید با یک دستور همه وابستگی‌ها نصب شوند:
-
-sudo apt install curl grep sed awk
-
-📷 اسکرین‌شات
-<p align="center"> <img src="https://github.com/YourUser/param-hunter/assets/demo.png" width="700"/> </p>
-📚 آموزش فارسی
-
-برای آموزش فارسی این ابزار و نمونه‌های کاربردی آن در تست نفوذ:
-👉 کانال تلگرام من
-🧑‍💻 توسعه‌دهنده
-
-Made with ❤️ by @Milad
-<p align="center"> <a href="https://github.com/Sp3ct3rX"><img src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://t.me/Sp3ct3r_Xx"><img src="https://img.shields.io/badge/Telegram-%230077B5.svg?&style=for-the-badge&logo=telegram&logoColor=white"/></a> <a href="https://instagram.com/sp3ct3rx"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white"/></a> </p>
-🛠️ لایسنس
-
-MIT License
-
-📦 Bash Dependencies
-
-This script uses the following common UNIX utilities:
-
-    curl – For sending HTTP requests
-
-    grep – For filtering lines
-
-    awk – For pattern scanning
-
-    sed – For string manipulation
-
-    jq – For parsing JSON (optional, but recommended)
-
-✅ Make sure these tools are installed before running the script.
-
-Install example (on Debian/Ubuntu):
-
-sudo apt update && sudo apt install curl grep awk sed jq -y
+- 🔍 Extract parameters from URLs
+- 🧪 Detect potential fuzzable inputs
+- 🌐 Support for crawling list of URLs from tools like `waybackurls`, `gau`, etc.
+- ⚙️ Filter parameters by keyword or pattern
+- 💡 Export results to file
+- 🧼 Clean output for piping into other tools
 
 ---
 
-## 📦 نصب
+## 🧰 Requirements
+
+> Works natively on most UNIX-based systems (Linux/macOS).  
+No dependencies required if `bash`, `grep`, `awk`, `curl`, and `sed` are installed (which are by default).
+
+---
+
+## 🚀 Installation
+
 
 ```bash
-git clone https://github.com/YourUser/param-hunter.git
+git clone https://github.com/yourusername/param-hunter.git
 cd param-hunter
 chmod +x param-hunter.sh
+./param-hunter.sh -h
+```
+
+
+
+🧪 Usage
+```
+./param-hunter.sh -l urls.txt -o output.txt
+```
+
+📘 Options:
+Flag	Description
+-u	Single URL to analyze
+-l	File containing list of URLs
+-k	Keyword filter (e.g., id, token)
+-o	Output results to file
+-h	Show help message
+🔍 Example
+
+echo "https://target.com/page.php?id=123&token=abc" > test.txt
+./param-hunter.sh -l test.txt -k "id"
+
+⏳ TODO
+
+Basic CLI version
+
+Keyword filtering
+
+Integration with common recon tools
+
+Bash-to-Python optional version
+
+Add colored output
+
+Add auto-fuzzing feature
+
+    Add JSON output format
+
+🤝 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+📄 License
+
+This project is licensed under the MIT License.

@@ -1,74 +1,81 @@
 #!/bin/bash
 
-# رنگ‌ها
+# رنگ‌ها برای نمایش زیباتر
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-CYAN='\033[0;36m'
+BLUE='\033[1;34m'
 YELLOW='\033[1;33m'
-RESET='\033[0m'
+NC='\033[0m' # بدون رنگ
 
-banner() {
-    echo -e "${CYAN}"
-    echo "   ____                           _   _             "
-    echo "  |  _ \ __ _ _ __ ___  ___ _ __| | | | ___ _ __   "
-    echo "  | |_) / _\` | '__/ __|/ _ \ '__| |_| |/ _ \ '_ \  "
-    echo "  |  __/ (_| | |  \__ \  __/ |  |  _  |  __/ | | | "
-    echo "  |_|   \__,_|_|  |___/\___|_|  |_| |_|\___|_| |_|"
-    echo -e "${RESET}            ${YELLOW}CLI tool for parameter discovery${RESET}"
-    echo
+# بنر زیبای ابزار
+show_banner() {
+  echo -e "${BLUE}"
+  echo "╔══════════════════════════════════════════════╗"
+  echo "║        🔍 Param-Hunter - v1.0               ║"
+  echo "║        By Milad — Bash CLI Edition          ║"
+  echo "╚══════════════════════════════════════════════╝"
+  echo -e "${NC}"
 }
 
-help_menu() {
-    echo -e "${YELLOW}Usage:${RESET} $0 [-u URL] [-l list.txt] [-o output.txt]"
-    echo -e "  -u URL        A single URL to scan"
-    echo -e "  -l file.txt   File with list of URLs (one per line)"
-    echo -e "  -o output.txt Save output to file"
-    exit 1
+# منوی راهنما
+show_help() {
+  show_banner
+  echo -e "${YELLOW}Usage:${NC} $0 -u <url> [-o <output_file>] [-p <params_file>]"
+  echo
+  echo "Options:"
+  echo "  -u  Target URL or domain (required)"
+  echo "  -o  Output file name (optional, default: result.txt)"
+  echo "  -p  Parameters wordlist file (optional, default: wordlists/params.txt)"
+  echo "  -h  Show this help menu"
+  echo
+  echo "Example:"
+  echo "  $0 -u https://example.com -o output.txt -p custom_params.txt"
 }
 
-# پارامترها
-url=""
-list=""
-outfile=""
+# اجرای اصلی ابزار
+main() {
+  local url=""
+  local output="result.txt"
+  local params_file="wordlists/params.txt"
 
-while getopts ":u:l:o:h" opt; do
+  while getopts ":u:o:p:h" opt; do
     case $opt in
-        u) url=$OPTARG ;;
-        l) list=$OPTARG ;;
-        o) outfile=$OPTARG ;;
-        h) help_menu ;;
-        *) help_menu ;;
+      u) url="$OPTARG" ;;
+      o) output="$OPTARG" ;;
+      p) params_file="$OPTARG" ;;
+      h) show_help; exit 0 ;;
+      \?) echo -e "${RED}[-] Invalid option: -$OPTARG${NC}"; show_help; exit 1 ;;
+      :) echo -e "${RED}[-] Option -$OPTARG requires an argument.${NC}"; exit 1 ;;
     esac
-done
+  done
 
-# تابع استخراج پارامتر از یک URL
-extract_params() {
-    input_url=$1
-    echo "$input_url" | grep -oP "(?<=\?|&)[^=]+(?==)" | sort -u
+  if [[ -z "$url" ]]; then
+    echo -e "${RED}[-] Target URL is required.${NC}"
+    show_help
+    exit 1
+  fi
+
+  echo -e "${GREEN}[+] Scanning $url using $params_file ...${NC}"
+
+  # بررسی فایل لیست پارامترها
+  if [[ ! -f "$params_file" ]]; then
+    echo -e "${RED}[-] Parameters file not found: $params_file${NC}"
+    exit 1
+  fi
+
+  > "$output"
+  while IFS= read -r param; do
+    full_url="$url?$param=test"
+    response=$(curl -s -o /dev/null -w "%{http_code}" "$full_url")
+    if [[ "$response" == "200" ]]; then
+      echo -e "${GREEN}[+] Valid param found: $param${NC}"
+      echo "$param" >> "$output"
+    else
+      echo -e "${YELLOW}[-] Ignored: $param (${response})${NC}"
+    fi
+  done < "$params_file"
+
+  echo -e "${BLUE}[+] Done. Results saved to: $output${NC}"
 }
 
-# شروع ابزار
-banner
-
-if [[ -n "$url" ]]; then
-    echo -e "${GREEN}[+] Extracting parameters from:${RESET} $url"
-    results=$(extract_params "$url")
-elif [[ -n "$list" ]]; then
-    echo -e "${GREEN}[+] Reading URLs from:${RESET} $list"
-    results=$(cat "$list" | while read u; do extract_params "$u"; done | sort -u)
-else
-    help_menu
-fi
-
-# نمایش نتایج
-if [[ -n "$results" ]]; then
-    echo -e "\n${CYAN}Discovered parameters:${RESET}"
-    echo "$results"
-    
-    if [[ -n "$outfile" ]]; then
-        echo "$results" > "$outfile"
-        echo -e "\n${YELLOW}[+] Saved to:${RESET} $outfile"
-    fi
-else
-    echo -e "${RED}[-] No parameters found.${RESET}"
-fi
+main "$@"
